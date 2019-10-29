@@ -43,13 +43,7 @@ exports.register = function (req, res, next) {
     const firstName = req.body.firstName;
     const lastName = req.body.lastName;
     const password = req.body.password;
-    const clientid = req.body.clientid;
-    let authAPIs = req.body.authAPIs;
 
-    if (!authAPIs)
-        authAPIs = [];
-    if (!clientid)
-        return res.status(422).send({ error: 'No clientid passed to register against.' })
     if (!email) {
         return res.status(422).send({ error: 'You must enter an email address.' });
     }
@@ -66,14 +60,6 @@ exports.register = function (req, res, next) {
             if (existingUser.auths.clients.filter(function (item) { return item === clientid }).length > 0) {
                 return res.status(422).send({ error: 'That email address is already in use for this client.' });
             } else {
-                existingUser.auths.clients.push(clientid);
-                for (i = 0; i < authAPIs.length; i++) {
-                    if (existingUser.auths.apis.filter(function (item) {
-                        return item === authAPIs[i]
-                    }).length == 0) {
-                        existingUser.auths.apis.push(authAPIs[i]);
-                    }
-                }
                 existingUser.save(function (err, user) {
                     if (err) { return next(err); }
                     let userInfo = existingUser.toJson();
@@ -90,7 +76,6 @@ exports.register = function (req, res, next) {
                 password: password,
                 provider: 'local',
                 roles: ['User'],
-                auths: { clients: [clientid], apis: authAPIs },
                 profile: { firstName: firstName, lastName: lastName }
             });
             user.save(function (err, user) {
