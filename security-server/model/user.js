@@ -13,6 +13,10 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
+  patientData: {
+    age: { type: Integer},
+    DOB: {type: Date}
+  },
   profile: {
     firstName: { type: String },
     lastName: { type: String }

@@ -26,12 +26,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gsilber/security-server.git"
+    "url": "git+https://github.com/JTurk14/security-server.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/gsilber/security-server/issues"
+    "url": "https://github.com/JTurk14/security-server/issues"
   },
-  "homepage": "https://github.com/gsilber/security-server#readme"
+  "homepage": "https://github.com/JTurk14/security-server#readme"
 }
